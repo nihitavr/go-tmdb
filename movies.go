@@ -56,6 +56,21 @@ type Movie struct {
 	Lists             *MovieLists             `json:",omitempty"`
 	Changes           *MovieChanges           `json:",omitempty"`
 	Rating            *MovieRating            `json:",omitempty"`
+	ReleaseDates      *MovieReleaseDates      `json:"release_dates,omitempty"`
+	ContentType 	  string
+}
+
+type MovieReleaseDates struct {
+	Results []struct {
+		ISO31661     string `json:"iso_3166_1""`
+		ReleaseDates []struct {
+			Certification string
+			ISO_639_1     string `json:"iso_639_1"`
+			Note          string
+			ReleaseDate   string `json:"release_date"`
+			releaseType   int    `json:"type"`
+		} `json:"release_dates"`
+	} `json:"results"`
 }
 
 // MovieShort struct
@@ -158,6 +173,7 @@ type MovieCredits struct {
 		CastID      int `json:"cast_id"`
 		Character   string
 		CreditID    string `json:"credit_id"`
+		Gender		int
 		ID          int
 		Name        string
 		Order       int

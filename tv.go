@@ -59,6 +59,16 @@ type TV struct {
 	Similar           *TvPagedResults      `json:",omitempty"`
 	Translations      *TvTranslations      `json:",omitempty"`
 	Videos            *TvVideos            `json:",omitempty"`
+	ContentRating     *ContentRating       `json:"content_ratings,omitempty"`
+	ContentType		  string
+	TvExternalIds	  TvExternalIds 		`json:"external_ids"`
+}
+
+type ContentRating struct {
+	Results []struct {
+		Iso31661 string `json:"iso_3166_1"`
+		Rating   string
+	} `json:"results,omitempty"`
 }
 
 // TvShort struct
@@ -135,6 +145,7 @@ type TvCredits struct {
 		CreditID    string `json:"credit_id"`
 		ID          int
 		Name        string
+		Gender      int
 		Order       int
 		ProfilePath string `json:"profile_path"`
 	}
